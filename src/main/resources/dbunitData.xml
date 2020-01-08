@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <!--Salary Table -->
+    <salarydetails EmpID="24356A" Salary="10000" Bonus="0" Increment="3245" />
+</dataset>
