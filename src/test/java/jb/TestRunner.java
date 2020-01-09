@@ -1,13 +1,17 @@
 package jb;
 
+import com.aventstack.extentreports.ExtentTest;
 import core.JBEmbedder;
+import listeners.ExtentReportTestListener;
 import org.jbehave.core.embedder.Embedder;
-import org.junit.Test;
+import org.testng.annotations.Test;
+import org.testng.annotations.Listeners;
 
 
 import java.util.Arrays;
 import java.util.List;
 
+@Listeners({ ExtentReportTestListener.class})
 public class TestRunner {
 
     @Test
