@@ -1,23 +1,22 @@
-package steps;
+package stepdefs;
 
 import core.DBHelper;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.dbunit.DatabaseTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.junit.Test;
+
 
 import java.io.FileInputStream;
 import java.sql.*;
 
 import core.SalaryCalculation;
 
-public class DBSteps extends DatabaseTestCase {
+public class StepDefinitions extends DatabaseTestCase {
     public static final String TABLE_LOGIN = "salarydetails";
     private FlatXmlDataSet loadedDataSet;
     private SalaryCalculation salaryCalculation;
@@ -40,13 +39,13 @@ public class DBSteps extends DatabaseTestCase {
     }
 
     /** * Test case for calculator * positive scenario---Valid Employee */
-    @Given("execute query $query")
+    @Given("execute query:")
     public void executeQuery(String query) throws SQLException {
         resultSet = dh.execQuery(query);
     }
 
     //Algorithm can be improved by iterating rows until required number is reached
-    @Then("number of lines is more than $expectedNumber")
+    @Then("number of lines is more than {int}")
     public void getLinesNumber (int expectedNumber) throws SQLException {
         Integer rows = null;
 
@@ -61,7 +60,7 @@ public class DBSteps extends DatabaseTestCase {
             throw new RuntimeException("Row number is " + rows + ", but should be more than " + expectedNumber);
     }
 
-    @Then("count is more than $expectedValue")
+    @Then("count is more than {int}")
     public void getCount (int expectedValue) throws SQLException {
         Integer count=null;
         if (resultSet.next()) {

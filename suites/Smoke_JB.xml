@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Regression" annotations="JDK" verbose="3" data-provider-thread-count="3">
-  <parameter name="startDriver" value="true"/>
+<suite name="Regression" annotations="JDK" verbose="3">
 
-	<test name="Regression" enabled="true"> <parameter name="startDriver" value="true"></parameter>
+	<test name="Regression" enabled="true">
 		<classes>
 			<class name="jb.TestRunner" />
 		</classes>
