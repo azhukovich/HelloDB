@@ -22,7 +22,6 @@ import java.io.File;
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "rerun:target/cucumber-reports/rerun.txt",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-
         }
         )
 public class TestRunner {

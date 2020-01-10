@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.sql.*;
 
 import core.SalaryCalculation;
+import org.junit.Assert;
 
 public class StepDefinitions extends DatabaseTestCase {
     public static final String TABLE_LOGIN = "salarydetails";
@@ -54,10 +55,12 @@ public class StepDefinitions extends DatabaseTestCase {
             // Move to beginning
             resultSet.beforeFirst();
         }
+
         if (rows == null)
             throw new RuntimeException("No rows returned. Check query and db.");
         if (rows <= expectedNumber)
-            throw new RuntimeException("Row number is " + rows + ", but should be more than " + expectedNumber);
+            Assert.assertTrue("Row number is " + rows + ", but should be more than " + expectedNumber,false);
+
     }
 
     @Then("count is more than {int}")
