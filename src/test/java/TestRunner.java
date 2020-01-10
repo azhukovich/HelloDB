@@ -1,12 +1,9 @@
 
 
 import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.junit.runner.RunWith;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -20,6 +17,6 @@ import org.testng.annotations.Test;
                 "rerun:target/cucumber-reports/rerun.txt"
         }
         )
-public class TestRunner {
+public class TestRunner extends AbstractTestNGCucumberTests {
 
 }

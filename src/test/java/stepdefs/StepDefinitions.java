@@ -15,13 +15,16 @@ import java.io.FileInputStream;
 import java.sql.*;
 
 import core.SalaryCalculation;
+import org.testng.Assert;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class StepDefinitions extends DatabaseTestCase {
     public static final String TABLE_LOGIN = "salarydetails";
     private FlatXmlDataSet loadedDataSet;
     private SalaryCalculation salaryCalculation;
     private static Connection jdbcConnection;
-    private ResultSet resultSet;
+    private ResultSet resultSet=null;
     private DBHelper dh = new DBHelper();
 
     /** * Provide a connection to the database * @return IDatabaseConnection */
@@ -42,6 +45,7 @@ public class StepDefinitions extends DatabaseTestCase {
     @Given("execute query:")
     public void executeQuery(String query) throws SQLException {
         resultSet = dh.execQuery(query);
+        Assert.assertNotEquals(null,resultSet,"No data returned from DB");
     }
 
     //Algorithm can be improved by iterating rows until required number is reached
@@ -54,10 +58,12 @@ public class StepDefinitions extends DatabaseTestCase {
             // Move to beginning
             resultSet.beforeFirst();
         }
+
         if (rows == null)
-            throw new RuntimeException("No rows returned. Check query and db.");
+            Assert.assertTrue(false,"No rows returned. Check query and db.");
         if (rows <= expectedNumber)
-            throw new RuntimeException("Row number is " + rows + ", but should be more than " + expectedNumber);
+            assertThat(rows).as("Incorrect number of rows returned.").isGreaterThan(expectedNumber);
+
     }
 
     @Then("count is more than {int}")
@@ -67,9 +73,11 @@ public class StepDefinitions extends DatabaseTestCase {
             count = resultSet.getInt(1);
         }
         if (count == null)
-            throw new RuntimeException("No rows returned. Check query and db.");
-        if (count <= expectedValue)
-            throw new RuntimeException("Count is " + count + ", but should be more than " + expectedValue);
+            assertThat(count).as("No rows returned. Check query and db.").isNotNull();
+            //throw new RuntimeException("No rows returned. Check query and db.");
+        assertThat(count).isLessThanOrEqualTo(expectedValue);
+        //if (count <= expectedValue)
+          //  throw new RuntimeException("Count is " + count + ", but should be more than " + expectedValue);
     }
 
     /** *Test case for calculator *negative scenario---
