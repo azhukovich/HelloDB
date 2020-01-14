@@ -2,4 +2,6 @@
 <dataset>
     <!--Salary Table -->
     <salarydetails EmpID="24356A" Salary="10000" Bonus="0" Increment="3245" />
+    <salarydetails EmpID="24356B" Salary="1000" Bonus="100" Increment="324" />
+    <salarydetails EmpID="24356C" Salary="100000" Bonus="10" Increment="32450" />
 </dataset>

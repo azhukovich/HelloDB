@@ -9,13 +9,18 @@ Given execute query:
 """
 select * from salarydetails where EmpID='24356A'
 """
-Then number of lines is more than 0
+Then [softcheck] number of lines is more than 0
+  And [softcheck] number of lines is more than 1
+  And [softcheck] number of lines is more than 0
+  And [softcheck] number of lines is more than 2
+  And [softcheck] number of lines is more than 3
+  Then check soft validation
 
 Scenario: 2 select *
 
 Given execute query:
 """
-select * from salarydetails where EmpID='24356A'
+select * from salarydetails
 """
 Then number of lines is more than 1
 

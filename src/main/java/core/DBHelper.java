@@ -11,7 +11,6 @@ public class DBHelper {
 
     public ResultSet execQuery(String query) throws SQLException {
         Statement stmt = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        return stmt
-                .executeQuery(query);
+        return stmt.executeQuery(query);
     }
 }
